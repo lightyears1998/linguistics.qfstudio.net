@@ -5,7 +5,7 @@ import mount from "koa-mount";
 import { ApolloServer } from "apollo-server-koa";
 import { buildSchema } from "type-graphql";
 import { GraphQLSchema, printSchema } from "graphql";
-import { useContainer, createConnection } from "typeorm";
+import { useContainer } from "typeorm";
 import fs from "fs-extra";
 import { Container } from "typedi";
 import responseTimeMiddleware from "koa-response-time";
@@ -22,9 +22,9 @@ import Router from "koa-router";
 import { CronJob } from "cron";
 
 import {
-  APP_VAR_DIR, APP_HOST, APP_PORT, APP_SECRET, QUERY_COMPLEXITY_LIMIT, APP_SESSION_KEY,
-  APP_PROXY, PG_HOST, PG_PORT, PG_USERNAME, PG_PASSWORD, PG_DATABASE
+  APP_VAR_DIR, APP_HOST, APP_PORT, APP_SECRET, QUERY_COMPLEXITY_LIMIT, APP_SESSION_KEY, APP_PROXY
 } from "./config";
+import { initAppDatabaseConnection } from "./database_connection";
 import {
   genSecret, isDevelopmentEnvironment, redis
 } from "./utils";
@@ -41,18 +41,7 @@ async function setupEnvironment() {
 
 async function setupDatabase(): Promise<void> {
   useContainer(Container);
-
-  await createConnection({
-    type: "postgres",
-    host: PG_HOST,
-    port: PG_PORT,
-    username: PG_USERNAME,
-    password: PG_PASSWORD,
-    database: PG_DATABASE,
-    synchronize: true,
-    logging: isDevelopmentEnvironment() ? "all" : undefined,
-    entities: [`${__dirname}/entity/**/*.{ts,js}`]
-  });
+  await initAppDatabaseConnection();
 }
 
 async function setupGraphQLSchema(): Promise<GraphQLSchema> {
