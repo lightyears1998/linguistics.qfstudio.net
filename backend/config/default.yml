@@ -1,0 +1,24 @@
+app:
+  host: localhost
+  port: 4001
+  proxy:
+    # 若 HTTP Proxy Headers 可信，则可设置 `proxy` 为 `true`。
+    true
+  secret: "linguistics"
+  session:
+    key: linguistics
+
+query:
+  complexity-limit: 65535
+
+redis:
+  host: localhost
+  port: 6379
+  password: pa$$w0rd
+
+postgresql:
+  host: localhost
+  port: 5432
+  username: linguistics
+  password: pa$$w0rd
+  database: linguistics

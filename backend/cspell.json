@@ -1,0 +1,19 @@
+{
+    "version": "0.1",
+    "allowCompoundWords": true,
+    "words": [
+        "airbnb",
+        "cclangkit",
+        "cooldb",
+        "dbaeumer",
+        "esnext",
+        "NLTK",
+        "NNPS",
+        "postgres",
+        "qfstudio",
+        "tslib",
+        "typedi",
+        "typeorm",
+        "unstar"
+    ]
+}
