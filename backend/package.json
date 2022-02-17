@@ -1,5 +1,5 @@
 {
-  "name": "linguistics.qfstudio.net",
+  "name": "linguistics-backend",
   "version": "0.1.0",
   "main": "lib/index.js",
   "license": "UNLICENSED",
