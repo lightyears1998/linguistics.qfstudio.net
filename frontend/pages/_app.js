@@ -8,7 +8,7 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'http://linguistics.qfstudio.net/graphql',
+  uri: 'https://linguistics.qfstudio.net/graphql',
   cache: new InMemoryCache()
 });
 
