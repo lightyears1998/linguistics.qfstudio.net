@@ -11,7 +11,7 @@ import { UsersConnection } from "../../type";
 import { Song } from "../../entity/Song";
 
 @Resolver(() => Song)
-export class UserResolver {
+export class SongResolver {
   @InjectManager()
   private readonly manager!: EntityManager
 
