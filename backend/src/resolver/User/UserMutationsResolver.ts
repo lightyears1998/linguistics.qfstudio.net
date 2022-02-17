@@ -25,6 +25,7 @@ export class UserMutationsResolver {
     @Arg("username", { description: "用户名" }) username: string,
     @Arg("password", { description: "密码" }) password: string,
   ): Promise<User> {
+    throw "Unimplemented";
     const user = await this.userService.registerUser(username, password);
     ctx.setSessionUser(user);
     return user;
