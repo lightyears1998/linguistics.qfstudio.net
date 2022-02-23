@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,7 +8,7 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'https://linguistics.qfstudio.net/graphql',
+  uri:   "https://linguistics.qfstudio.net/graphql",
   cache: new InMemoryCache()
 });
 
@@ -16,7 +16,7 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }) {
   return <ApolloProvider client={client}>
     <Component {...pageProps} />
-  </ApolloProvider>
+  </ApolloProvider>;
 }
 
-export default MyApp
+export default MyApp;

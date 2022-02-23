@@ -1,6 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +7,7 @@ import {
   useQuery,
   gql
 } from "@apollo/client";
+import styles from "../styles/Home.module.css";
 
 const RANDOM_SONG = gql`
 query {
@@ -17,29 +17,37 @@ query {
     lyrics
   }
 }
-`
+`;
 
 function RefetchButton(props) {
   return <button onClick={() => {
     props.refetch();
     document.documentElement.scrollTop = 0;
-  }}>Random</button>
+  }}>Random</button>;
 }
 
-function RandomSong () {
-  const { loading, error, data, refetch } = useQuery(RANDOM_SONG);
+function RandomSong() {
+  const {
+    loading, error, data, refetch
+  } = useQuery(RANDOM_SONG);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error :(</p>;
+  }
 
-  const { songId, neteaseMusicId, lyrics } = data.randomSong
+  const {
+    songId, neteaseMusicId, lyrics
+  } = data.randomSong;
 
   return <>
     <p><span>{songId}</span> <span>{neteaseMusicId}</span></p>
     <RefetchButton refetch={refetch}></RefetchButton>
     {lyrics.split("\n").map(line => <p key={String(Math.random())}>{line}</p>)}
     <RefetchButton refetch={refetch}></RefetchButton>
-  </>
+  </>;
 }
 
 export default function Home() {
@@ -56,5 +64,5 @@ export default function Home() {
         <RandomSong></RandomSong>
       </main>
     </div>
-  )
+  );
 }
