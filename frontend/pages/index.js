@@ -19,6 +19,13 @@ query {
 }
 `
 
+function RefetchButton(props) {
+  return <button onClick={() => {
+    props.refetch();
+    document.documentElement.scrollTop = 0;
+  }}>Random</button>
+}
+
 function RandomSong () {
   const { loading, error, data, refetch } = useQuery(RANDOM_SONG);
 
@@ -29,9 +36,10 @@ function RandomSong () {
 
   return <>
     <p><span>{songId}</span> <span>{neteaseMusicId}</span></p>
+    <RefetchButton refetch={refetch}></RefetchButton>
     {lyrics.split("\n").map(line => <p key={String(Math.random())}>{line}</p>)}
-    <button onClick={() => refetch()}>Random</button>
-    </>
+    <RefetchButton refetch={refetch}></RefetchButton>
+  </>
 }
 
 export default function Home() {
